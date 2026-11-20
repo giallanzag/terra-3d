@@ -49,5 +49,6 @@ void main() {
     col = mix(col, lava, pozze * uMagma);
     col += lava * pozze * uMagma * 0.6;
   }
+  col = pow(max(col, vec3(0.0)), vec3(0.8));   // stessa curva del globo
   gl_FragColor = vec4(col, uApparizione);
 }

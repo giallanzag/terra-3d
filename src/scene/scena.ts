@@ -88,6 +88,9 @@ export class Scena {
   /** Sposta il globo verso l'alto di una frazione dell'altezza dello schermo (0 = centrato) */
   impostaSpostamentoVerticale(frazione: number): void { this.spostamentoY = frazione; this.ridimensiona(); }
   private spostamentoY = 0;
+  /** Luminosità generale dell'immagine (1 = neutra). Moltiplica l'illuminazione di globo, nuvole e Luna. */
+  impostaLuminosita(v: number): void { this.luminosita = v; }
+  private luminosita = 1.2;
   impostaLuna(v: boolean): void { this.luna.visibile = v; }
   impostaGhiacci(v: boolean): void { this.superficie.ghiacciVisibili = v; this.bakeDaFare = true; }
   /** Peso delle mappe reali (1) rispetto ai continenti procedurali (0) a `ma` */
@@ -217,11 +220,11 @@ export class Scena {
     }
     this.effetti.impostaViewport(this.renderer.domElement.height, this.camera.fov);
     this.effetti.aggiorna(dt);
-    const att = 1 - 0.4 * this.effetti.oscuramento;      // luce attenuata dalle ceneri
+    const att = (1 - 0.4 * this.effetti.oscuramento) * this.luminosita;   // luce attenuata dalle ceneri × luminosità scelta
     this.globo.aggiorna(stato, att);
     this.nuvole.aggiorna(stato, this.orologio, att);
     this.atmosfera.aggiorna(stato, this.effetti.oscuramento);
-    this.luna.aggiorna(stato, omega, dt);
+    this.luna.aggiorna(stato, omega, dt, this.luminosita);
     this.sole.aggiorna(stato, this.camera);
     this.controlli.update();
     this.renderer.render(this.scena, this.camera);

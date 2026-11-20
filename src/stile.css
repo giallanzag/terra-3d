@@ -149,3 +149,7 @@ body.in-tour #pannello { display:none; }
   .etichetta.continente { font-size:.62rem; }
 }
 @media (prefers-reduced-motion: reduce) { .tour-barra i { transition:none; } }
+
+#layer .luminosita { display:grid; grid-template-columns:auto 1fr 3.2em; gap:10px; color:var(--tenue); }
+#layer .luminosita input { width:100%; accent-color:var(--accento); height:22px; }
+#layer .luminosita output { text-align:right; color:var(--testo); font-variant-numeric:tabular-nums; }

@@ -31,7 +31,7 @@ export class Luna {
   }
 
   /** `omegaTerra` in rad/s (velocità visiva di rotazione terrestre), `dt` in secondi. */
-  aggiorna(stato: StatoTerra, omegaTerra: number, dt: number): void {
+  aggiorna(stato: StatoTerra, omegaTerra: number, dt: number, luminosita = 1): void {
     this.mesh.visible = this.visibile && stato.lunaPresente > 0.001;
     if (!this.mesh.visible) return;
     this.angolo += velocitaOrbitaLuna(stato, omegaTerra) * dt;
@@ -46,6 +46,6 @@ export class Luna {
     u.uApparizione!.value = Math.min(a * 2, 1);
     u.uMari!.value = stato.mariLuna;
     u.uMagma!.value = stato.magmaLuna;
-    u.uLuce!.value = 0.55 + 0.45 * stato.luminositaSole;
+    u.uLuce!.value = (0.55 + 0.45 * stato.luminositaSole) * luminosita;
   }
 }

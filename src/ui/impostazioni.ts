@@ -8,6 +8,8 @@ export interface Impostazioni {
   rotazioneCamera: boolean;
   rotazionePianeta: boolean;
   qualita: 'auto' | 'alta' | 'bassa';
+  /** Luminosità dell'immagine (1 = neutra) */
+  luminosita: number;
 }
 
 const CHIAVE = 'terra46-impostazioni';
@@ -23,6 +25,7 @@ export function impostazioniDefault(): Impostazioni {
     // Chi chiede meno animazioni parte con il pianeta fermo
     rotazionePianeta: !riduceMovimento(),
     qualita: 'auto',
+    luminosita: 1.2,
   };
 }
 

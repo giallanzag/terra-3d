@@ -31,9 +31,10 @@ void main() {
   float sc = uRilievo * terra;           // solo sulle terre emerse
   vec3 nn = normalize(n - sc * ((hE - hW) * est + (hN - hS) * nord));
 
-  float diff = max(dot(nn, L), 0.0);
-  float terminatore = smoothstep(-0.05, 0.25, dot(n, L));   // transizione morbida giorno/notte
-  vec3 col = alb * (0.035 + 1.15 * diff * terminatore) * uLuce;
+  // Luce "avvolgente" (wrap lighting): il buio non arriva di colpo al terminatore, come per la diffusione atmosferica
+  float diff = max((dot(nn, L) + 0.2) / 1.2, 0.0);
+  float terminatore = smoothstep(-0.2, 0.3, dot(n, L));   // transizione morbida giorno/notte
+  vec3 col = alb * (0.09 + 1.15 * diff * terminatore) * uLuce;
 
   // Oceano: riflesso del Sole + un velo di cielo ai bordi (Fresnel)
   vec3 H = normalize(L + V);
@@ -48,6 +49,9 @@ void main() {
   // Foschia atmosferica (es. metano arancione dell'Archeano): più densa verso l'orizzonte
   float spessore = 0.35 + 0.65 * (1.0 - max(dot(n, V), 0.0));
   col = mix(col, uColoreVelo * (0.12 + 0.75 * terminatore) * uLuce, uVelo * spessore);
+
+  // Sollevamento delle ombre (gamma 0,8): schiarisce i toni scuri senza bruciare i chiari
+  col = pow(max(col, vec3(0.0)), vec3(0.8));
 
   // Dithering (rumore a gradiente interlacciato): elimina il banding a 8 bit nelle zone scure
   float ig = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))));

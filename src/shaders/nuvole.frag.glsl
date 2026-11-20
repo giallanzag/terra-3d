@@ -38,5 +38,6 @@ void main() {
   vec3 col = base * (0.04 + 1.05 * luce * term) * uLuce * (0.8 + 0.3 * fbm(q * 12.0));
   col += vec3(1.0, 0.4, 0.1) * uMagma * 0.32;       // riflesso del magma sul lato in ombra
 
+  col = pow(max(col, vec3(0.0)), vec3(0.8));   // stessa curva del globo
   gl_FragColor = vec4(col, nube * mix(0.8, 0.9, uMagma));
 }

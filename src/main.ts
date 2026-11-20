@@ -43,6 +43,7 @@ const applica = (): void => {
   scena.impostaRotazionePianeta(imp.rotazionePianeta);
   scena.impostaRotazioneAutomatica(imp.rotazioneCamera || tour.inCorso);
   scena.impostaQualita(imp.qualita);
+  scena.impostaLuminosita(imp.luminosita);
   etichette.visibili = imp.etichette;
 };
 const layer = new PannelloLayer($('#layer'), imp, () => { salvaImpostazioni(imp); applica(); });
