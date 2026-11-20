@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Terra 4,6 – L'evoluzione del pianeta</title>
+  <meta name="description" content="Simulazione 3D interattiva dell'evoluzione della Terra, da 4,54 miliardi di anni fa a oggi." />
+  <meta name="theme-color" content="#05070d" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="scena" aria-label="Globo terrestre in 3D: trascina per ruotare, scorri per ingrandire" tabindex="0"></canvas>
+    <div id="etichette" aria-hidden="true"></div>
+    <header id="titolo"><h1>Terra <span>4,6</span></h1><p id="sottotitolo">Un viaggio di 4,54 miliardi di anni</p></header>
+    <nav id="strumenti" aria-label="Strumenti">
+      <button id="btn-tour" title="Tour guidato (T)">▶ Tour guidato</button>
+      <button id="btn-layer" aria-expanded="false" aria-controls="layer" title="Livelli e opzioni">Livelli</button>
+      <button id="btn-info" title="Informazioni e crediti" aria-label="Informazioni e crediti">ⓘ</button>
+    </nav>
+    <div id="layer" hidden></div>
+    <aside id="pannello" aria-live="polite"></aside>
+    <section id="tour" hidden aria-live="polite"></section>
+    <section id="barra-tempo"></section>
+    <div id="benvenuto" class="scheda" role="dialog" aria-modal="true" aria-label="Benvenuto"></div>
+    <div id="info" class="scheda" role="dialog" aria-modal="true" aria-label="Informazioni e crediti" hidden></div>
+    <div id="errore" class="scheda" hidden>
+      <div class="scheda-contenuto"><h2>Impossibile avviare la grafica 3D</h2>
+        <p>Il tuo browser o dispositivo non sembra supportare WebGL 2. Prova ad aggiornare il browser o ad abilitare l'accelerazione hardware.</p></div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

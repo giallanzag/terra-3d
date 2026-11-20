@@ -1,0 +1,5 @@
+terre_oggi.png — maschera terra/mare dell'epoca attuale (formato descritto in src/scene/mappeTerre.ts)
+  Canale R: maschera nitida; G: sfocata (σ≈1,4°); B: molto sfocata (σ≈7°). Equirettangolare 2048×1024.
+  Origine: Natural Earth (naturalearthdata.com), "Land" 1:50m, versione 4.1.0, nella redistribuzione TopoJSON del
+  pacchetto npm "world-atlas" 2.0.2 (licenza ISC). I dati Natural Earth sono di pubblico dominio.
+  Generata rasterizzando i poligoni (con gestione dell'antimeridiano) e sfocando; nessun altro dato incluso.
